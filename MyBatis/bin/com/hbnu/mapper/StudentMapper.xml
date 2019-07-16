@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.hbnu.mapper.StudentMapper">  
+	<select id="queryStudentBySno" resultType="com.hbnu.entity.Student" parameterType="int">   
+ 		select * from addstu where sno = #{sno}  
+ 	</select>
+ 	
+ 	<delete id="deleteStuBySnoCallAble" statementType="CALLABLE" parameterType="HashMap">
+ 		{ 
+ 			CALL deleteStuBySno(
+ 			#{stuno,jdbcType=INTEGER,mode=IN})
+ 			
+ 		}
+ 		
+ 	</delete>
+ 	<select id="studnetstucard" parameterType="int" resultMap="student_stucard_map">
+ 		select a.*,c.* from addstu a inner join stucard c on a.sCardid = c.scardid where a.sno=#{sno}	
+ 	</select>
+ 	<resultMap type="com.hbnu.entity.Student" id="student_stucard_map">
+ 		<id property="sno" column = "sno"/>
+ 		<result property="sname" column="sname"/>
+ 		<result property="sage" column="sage"/>
+ 		<association property="studendcard" javaType="com.hbnu.entity.StudentCard">
+ 			<id property="scardid" column="scardid"/>
+ 			<result property="scardinfo" column="scardinfo"/>
+ 		</association>
+ 	</resultMap>
+ 	
+ 	
+	<select id="queryAllStudent" resultType="com.hbnu.entity.Student" >   
+ 		select * from addstu   
+ 	</select> 
+ 	
+ 	
+ 	<insert id="addstudent" parameterType ="com.hbnu.entity.Student">
+ 		insert into addstu values (#{sno},#{sname},#{sage},#{saddress})
+ 	</insert> 
+ 	
+ 	
+ 	<delete id="deleteStudentBySno" parameterType = "int">
+ 		delete from addstu where sno = #{sno}
+ 	</delete>
+ 	
+ 	<update id="updateStudent" parameterType ="com.hbnu.entity.Student">
+ 		update addstu set sname = #{sname},sage =#{sage},saddress=#{saddress} where sno =#{sno}
+ 	</update>
+ 	
+
+</mapper>
