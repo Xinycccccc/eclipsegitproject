@@ -1,5 +1,6 @@
 package com.hbnu.entity;
 
+//定义学生Bean
 public class Student {
 	private int sno;
 	private String sname;
