@@ -1,6 +1,6 @@
 package com.hbnu.entity;
 
-//瀹氫箟瀛︾敓Bean
+//瀹氫箟瀛︾敓Bean+即学生个体信息model
 public class Student {
 	private int sno;
 	private String sname;
