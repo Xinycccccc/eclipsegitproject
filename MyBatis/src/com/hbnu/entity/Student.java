@@ -1,6 +1,6 @@
 package com.hbnu.entity;
 
-//定义学生Bean+model��
+//定义学生Bean+model��baba
 public class Student {
 	private int sno;
 	private String sname;
